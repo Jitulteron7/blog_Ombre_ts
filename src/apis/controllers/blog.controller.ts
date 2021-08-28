@@ -30,55 +30,48 @@ export   const blogController = {
     
     //get
     getAllBlogs: asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-        // const data = await adminService.getAllAdmin();
-        // res.status(200).json({
-        //     data
-        // });
+        const data = await blogService.getAllBlogs();
+        res.status(200).json({
+            data
+        });
     }),
     getOneBlog: asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-        // const data = await adminService.deleteAllAdmin(req.body.deleteAdmins);
-        // res.status(200).json({
-        //     data
-        // });
+        const data = await blogService.getOneBlog(req.params.id);
+        res.status(200).json({
+            data
+        });
     }),
     myBlogs: asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-        // const data = await adminService.updateOneAdmin(req.params.id, req.body.data);
-        // res.status(200).json({
-        //     data
-        // });
-    }),
-    //delete
-    deleteAllBlog: asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-        // const data = await adminService.deleteAllAdmin(req.body.deleteAdmins);
-        // res.status(200).json({
-        //     data
-        // });
-    }),
-
-    deleteOne: asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-        let isPresent = await BlogModel.findById(req.body.id)
-        if(isPresent?.author!==req.user._id){
-            res.status(401).json({
-                message:"you cannot delete others blog"
-            })
-        }
-        const data = await blogService.deleteOne(req.body.id);
+   
+        const data = await blogService.myBlogs(req.user._id);
         res.status(200).json({
             data
         });
     }),
 
+    //delete
+    deleteOne: asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+    
+        const data = await blogService.deleteOne(req.params.id);
+        res.status(200).json({
+            data,
+            message:"deleted successfully"
+        });
+    }),
+
     //patch
     comment: asyncHandler(async (req: Request, res: Response, next: NextFunction) => {        
-        const { idComment,text,by} = req.body;        
-        const data = await blogService.comment( idComment,text,by);
+        const { idComment,text} = req.body;        
+        const data = await blogService.comment( idComment,text,req.user._id);
         res.status(200).json({ data });
     }),
+
     editOneBlog: asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-        // const data = await adminService.updateOneAdmin(req.params.id, req.body.data);
-        // res.status(200).json({
-        //     data
-        // });
+        
+        const data = await blogService.editOneBlog(req.params.id, req.body, req.file.filename);
+        res.status(200).json({
+            data
+        });
     }),
 
    

@@ -40,30 +40,15 @@ export   const userController = {
         res.status(200).json({ user,token});
     }),
     //get
-    getAllAdmin: asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-        // const data = await adminService.getAllAdmin();
-        // res.status(200).json({
-        //     data
-        // });
-    }),
+  
 
    
     //delete
-    deleteAllAdmin: asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-        // const data = await adminService.deleteAllAdmin(req.body.deleteAdmins);
-        // res.status(200).json({
-        //     data
-        // });
-    }),
+   
 
    
     //patch
-    updateOneAdmin: asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-        // const data = await adminService.updateOneAdmin(req.params.id, req.body.data);
-        // res.status(200).json({
-        //     data
-        // });
-    }),
+    
 
    
 };

@@ -1,6 +1,3 @@
-import jwt, { JwtPayload } from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
-import { isValid } from '../utils/isValid';
 import { UserDocument,BlogDocument } from '../models';
 import { Model } from 'mongoose';
 
@@ -72,7 +69,7 @@ class BlogService {
     async myBlogs(id: string) {
         
         try {
-            const data = await this._BlogModel.find({ _id:id })
+            const data = await this._BlogModel.find({ author:id })
             .populate("comments.by","author _id")
             .populate("author","author _id")
             .exec()  
@@ -98,8 +95,18 @@ class BlogService {
         return data
     }
 
-    async  editOneBlog(id: string) {
-        const data = await this.UserModel.findByIdAndUpdate(id);
+    async  editOneBlog(id: string,blog:any, image:string) {
+    
+        const {description,dateCreated,body,author,title} =blog
+
+        const data = await this._BlogModel.findByIdAndUpdate(id,{
+            description,
+            dateCreated,
+            body,
+            title,
+            image
+        });
+        
         return data
     }
 

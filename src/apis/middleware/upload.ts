@@ -9,7 +9,7 @@ const multerStorage = multer.diskStorage({
     cb(null, `admin-${file.fieldname}-${Date.now()}.${ext}`);
   },
 });
-console.log(`${__dirname}../uploads`);
+
 const fileFilter = (req: any, file: any, cb: any) => {
   if (
     file.mimetype === "image/jpg" ||

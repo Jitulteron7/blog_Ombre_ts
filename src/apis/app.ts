@@ -14,7 +14,8 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 // cors req or not 
 // app.use(cors({ origin: true, credentials: true }));
 
-
+// disable console.log
+console.log = function() {}
 
 //  api call log
 app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {

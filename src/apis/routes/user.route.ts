@@ -10,13 +10,12 @@ router.post('/create',upload.single("myPic"),userController.create);
 router.post('/logout',Auth(),userController.logout);
 router.post('/login',userController.login);
 //get
-router.get('/allAdmin', Auth(), userController.getAllAdmin);
 
 //delete
-router.delete('/allAdmin', Auth(), userController.deleteAllAdmin);
+
 
 //patch
-router.patch('/oneAdmin/:id', Auth(), userController.updateOneAdmin);
+
 
 
 

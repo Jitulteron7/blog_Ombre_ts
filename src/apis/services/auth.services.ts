@@ -62,7 +62,7 @@ class AuthService {
             error.name = 'Unauthorized Admin';
             throw error;
         }
-
+        user._id=decode.id
         return user;
     }
     async login(email: string, password: string) {
